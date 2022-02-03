@@ -6,6 +6,7 @@ use App\Repository\SocieteDeGestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SocieteDeGestionRepository::class)]
 class SocieteDeGestion
@@ -16,6 +17,13 @@ class SocieteDeGestion
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Your first name must be at least {{ limit }} characters long',
+        maxMessage: 'Your first name cannot be longer than {{ limit }} characters',
+    )]
+    #[Assert\Regex('/^[A-Za-z]([a-zA-Z0-9]|[- @\.#&!])*$/')]
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -25,6 +33,7 @@ class SocieteDeGestion
     private $date_creation;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Type('numeric')]
     private $effectifs;
 
     #[ORM\OneToMany(mappedBy: 'societe_de_gestion', targetEntity: Scpi::class)]

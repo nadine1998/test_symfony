@@ -3,11 +3,16 @@
 {% block title %}Edit SocieteDeGestion{% endblock %}
 
 {% block body %}
+<div class ="form-styles" >
+<div class="button-right">
+    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_index') }}">back to list</a>
+    </div>
     <h1>Edit SocieteDeGestion</h1>
 
     {{ include('societe_de_gestion/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('societe_de_gestion_index') }}">back to list</a>
+
 
     {{ include('societe_de_gestion/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

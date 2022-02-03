@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ScpiRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ScpiRepository::class)]
 class Scpi
 {
@@ -12,26 +12,42 @@ class Scpi
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
-
+  
     #[ORM\Column(type: 'string', length: 255)]
+    
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Your first name must be at least {{ limit }} characters long',
+        maxMessage: 'Your first name cannot be longer than {{ limit }} characters',
+    )]
+    #[Assert\Regex('/^[A-Za-z]([a-zA-Z0-9]|[- @\.#&!])*$/')]
+  
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $tdvm;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Positive]
+    #[Assert\Type('numeric')]
     private $prix_part;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Positive]
+    #[Assert\Type('numeric')]
     private $capitalisation;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Positive]
+    #[Assert\Type('numeric')]
     private $taux_occupation;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $valeur_retrait;
 
     #[ORM\Column(type: 'string', length: 255)]
+  
     private $annee_creation;
 
     #[ORM\ManyToOne(targetEntity: SocieteDeGestion::class, inversedBy: 'scpis')]
