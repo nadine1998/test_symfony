@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Scpi{% endblock %}
+
+{% block body %}
+    <h1>Edit Scpi</h1>
+
+    {{ include('scpi/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('scpi_index') }}">back to list</a>
+
+    {{ include('scpi/_delete_form.html.twig') }}
+{% endblock %}

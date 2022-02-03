@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SocieteDeGestion index{% endblock %}
+
+{% block body %}
+    <h1>SocieteDeGestion index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Date_creation</th>
+                <th>Effectifs</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for societe_de_gestion in societe_de_gestions %}
+            <tr>
+                <td>{{ societe_de_gestion.id }}</td>
+                <td>{{ societe_de_gestion.nom }}</td>
+                <td>{{ societe_de_gestion.adresse }}</td>
+                <td>{{ societe_de_gestion.dateCreation ? societe_de_gestion.dateCreation|date('Y-m-d') : '' }}</td>
+                <td>{{ societe_de_gestion.effectifs }}</td>
+                <td>
+                    <a href="{{ path('societe_de_gestion_show', {'id': societe_de_gestion.id}) }}">show</a>
+                    <a href="{{ path('societe_de_gestion_edit', {'id': societe_de_gestion.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('societe_de_gestion_new') }}">Create new</a>
+{% endblock %}

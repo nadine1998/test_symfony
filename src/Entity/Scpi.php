@@ -35,6 +35,8 @@ class Scpi
     private $annee_creation;
 
     #[ORM\ManyToOne(targetEntity: SocieteDeGestion::class, inversedBy: 'scpis')]
+    #[ORM\JoinColumn(onDelete:'CASCADE')]
+  
     private $societe_de_gestion;
 
     public function getId(): ?int

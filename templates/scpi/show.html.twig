@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Scpi{% endblock %}
+
+{% block body %}
+    <h1>Scpi</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ scpi.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ scpi.nom }}</td>
+            </tr>
+            <tr>
+                <th>Tdvm</th>
+                <td>{{ scpi.tdvm }}</td>
+            </tr>
+            <tr>
+                <th>Prix_part</th>
+                <td>{{ scpi.prixPart }}</td>
+            </tr>
+            <tr>
+                <th>Capitalisation</th>
+                <td>{{ scpi.capitalisation }}</td>
+            </tr>
+            <tr>
+                <th>Taux_occupation</th>
+                <td>{{ scpi.tauxOccupation }}</td>
+            </tr>
+            <tr>
+                <th>Valeur_retrait</th>
+                <td>{{ scpi.valeurRetrait }}</td>
+            </tr>
+            <tr>
+                <th>Annee_creation</th>
+                <td>{{ scpi.anneeCreation }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('scpi_index') }}">back to list</a>
+
+    <a href="{{ path('scpi_edit', {'id': scpi.id}) }}">edit</a>
+
+    {{ include('scpi/_delete_form.html.twig') }}
+{% endblock %}

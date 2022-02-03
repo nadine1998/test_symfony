@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Scpi index{% endblock %}
+
+{% block body %}
+    <h1>Scpi index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Tdvm</th>
+                <th>Prix_part</th>
+                <th>Capitalisation</th>
+                <th>Taux_occupation</th>
+                <th>Valeur_retrait</th>
+                <th>Annee_creation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for scpi in scpis %}
+            <tr>
+                <td>{{ scpi.id }}</td>
+                <td>{{ scpi.nom }}</td>
+                <td>{{ scpi.tdvm }}</td>
+                <td>{{ scpi.prixPart }}</td>
+                <td>{{ scpi.capitalisation }}</td>
+                <td>{{ scpi.tauxOccupation }}</td>
+                <td>{{ scpi.valeurRetrait }}</td>
+                <td>{{ scpi.anneeCreation }}</td>
+                <td>
+                    <a href="{{ path('scpi_show', {'id': scpi.id}) }}">show</a>
+                    <a href="{{ path('scpi_edit', {'id': scpi.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('scpi_new') }}">Create new</a>
+{% endblock %}

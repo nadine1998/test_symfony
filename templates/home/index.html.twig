@@ -9,9 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello Admin {{ app.user.email }}! ✅</h1>
+    <h1>Logged in !</h1>
 
-  
+    <div>
+     <a href=" {{path('societe_de_gestion_index')}} "> Sociétés de gestion</a> 
+     <a href=" {{path('scpi_index')}} ">Scpi</a>
+   
+    </div>
         
 </div>
 {% endblock %}
