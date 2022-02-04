@@ -6,7 +6,7 @@
 <div class ="form-styles row" >
     <h1>Liste des Scpi</h1>
     <div class="button-right">
-  <a class="btn btn-secondary" href="{{ path('scpi_new') }}">Create new</a>
+  <a class="btn btn-secondary" href="{{ path('scpi_new') }}">Ajouter</a>
   </div>
     {% for scpi in scpis %}
   <div class="card" style="width:30%">
@@ -18,8 +18,8 @@
     </div>
     <h5 class="card-title">Gérée par <span class="card-text"><a href="{{ path('societe_de_gestion_show', {'id': scpi.getSocieteDeGestion.id })}}">{{ scpi.getSocieteDeGestion }} </a></span></h5>
    
-           <a class="btn btn-secondary" href="{{ path('scpi_show', {'id': scpi.id}) }}">show</a>
-                    <a class="btn btn-secondary" href="{{ path('scpi_edit', {'id': scpi.id}) }}">edit</a>
+           <a class="btn btn-secondary" href="{{ path('scpi_show', {'id': scpi.id}) }}">Détails</a>
+                    <a class="btn btn-secondary" href="{{ path('scpi_edit', {'id': scpi.id}) }}">Modifier</a>
   </div>
 </div>
   {% else %}

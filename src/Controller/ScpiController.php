@@ -17,8 +17,10 @@ class ScpiController extends AbstractController
     #[Route('/', name: 'scpi_index', methods: ['GET'])]
     public function index(ScpiRepository $scpiRepository): Response
     {
+        $scpis_result = $scpiRepository->findByFilter();
         return $this->render('scpi/index.html.twig', [
             'scpis' => $scpiRepository->findAll(),
+             'scpis_result' => $scpis_result,
         ]);
     }
 

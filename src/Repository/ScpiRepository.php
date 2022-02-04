@@ -19,6 +19,14 @@ class ScpiRepository extends ServiceEntityRepository
         parent::__construct($registry, Scpi::class);
     }
 
+    /**
+     * Récupére les Scpis liées au filter
+     * @return Scpi[]
+     */
+    public function findByFilter()
+    {
+        return $this->findAll();
+    }
     // /**
     //  * @return Scpi[] Returns an array of Scpi objects
     //  */

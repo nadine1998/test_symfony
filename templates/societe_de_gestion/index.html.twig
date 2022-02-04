@@ -7,7 +7,7 @@
     <h1>Liste des sociétés de gestion</h1>
     
 <div class="button-right">
-    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_new') }}">Create new</a>
+    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_new') }}">Ajouter</a>
 </div>
     {% for societe_de_gestion in societe_de_gestions %}
   <div class="card" style="width:30%">
@@ -17,8 +17,8 @@
     <div class="button-inline">
     <h5 class="card-title">Nombre de Scpi </h5><span class="card-text">{{ societe_de_gestion.getScpis.count }}</span>
    </div>
-          <a class="btn btn-secondary" href="{{ path('societe_de_gestion_show', {'id': societe_de_gestion.id}) }}">show</a>
-                    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_edit', {'id': societe_de_gestion.id}) }}">edit</a>
+          <a class="btn btn-secondary" href="{{ path('societe_de_gestion_show', {'id': societe_de_gestion.id}) }}">Détails</a>
+                    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_edit', {'id': societe_de_gestion.id}) }}">Modifier</a>
   </div>
 </div>
   {% else %}

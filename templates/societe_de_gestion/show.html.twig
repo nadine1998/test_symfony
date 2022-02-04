@@ -6,7 +6,7 @@
 
     <h1>SocieteDeGestion</h1>
     <div class="button-right">
-  <a class="btn btn-secondary" href="{{ path('societe_de_gestion_index') }}">back to list</a>
+  <a class="btn btn-secondary" href="{{ path('societe_de_gestion_index') }}">Retour</a>
   </div>
     <table class="table">
         <tbody>
@@ -43,7 +43,7 @@
 
   
 <div class="button-inline"> 
-    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_edit', {'id': societe_de_gestion.id}) }}">edit</a>
+    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_edit', {'id': societe_de_gestion.id}) }}">Modifier</a>
 
     {{ include('societe_de_gestion/_delete_form.html.twig') }}
     </div>
