@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Scpi;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -23,9 +24,30 @@ class ScpiRepository extends ServiceEntityRepository
      * Récupére les Scpis liées au filter
      * @return Scpi[]
      */
-    public function findByFilter()
+    public function findByFilter(SearchData $search)
     {
-        return $this->findAll();
+        $query = $this
+        ->createQueryBuilder('s') 
+        ->select('so', 's','c')
+        ->join('s.societe_de_gestion', 'so')
+        ->join('s.categorie','c');
+        if (!empty($search->societe_de_gestion)) {
+            $query = $query
+                ->andWhere('so.id IN (:societe_de_gestion)')
+                ->setParameter('societe_de_gestion', $search->societe_de_gestion);
+        }
+        if (!empty($search->categorie)) {
+            $query = $query
+                ->andWhere('c.id IN (:categorie)')
+                ->setParameter('categorie', $search->categorie);
+        }
+        if (!empty($search->assurance_vie)) {
+            $query = $query
+                ->andWhere('s.assurance_vie = 1');
+        }
+       return $query->getQuery()->getResult();
+        
+
     }
     // /**
     //  * @return Scpi[] Returns an array of Scpi objects

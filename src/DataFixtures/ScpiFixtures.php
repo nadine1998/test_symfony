@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Categorie;
 use App\Entity\Scpi;
 use App\Entity\SocieteDeGestion;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -15,7 +16,8 @@ class ScpiFixtures extends Fixture implements DependentFixtureInterface
     {
         $generator = Factory::create("fr_FR");
         $societes_de_gestion = $manager->getRepository(SocieteDeGestion::class)->findAll();
-        for ($i = 0; $i < 20; $i++) {
+        $categories = $manager->getRepository(Categorie::class)->findAll();
+        for ($i = 0; $i < 30; $i++) {
             $scpi = new Scpi();
             $scpi->setNom($generator->company);
             $scpi->setPrixPart(mt_rand(10, 100));
@@ -26,6 +28,9 @@ class ScpiFixtures extends Fixture implements DependentFixtureInterface
             $scpi->setValeurRetrait(mt_rand(10, 100));
             $scpi->setAnneeCreation(mt_rand(1980, 2020));
             $scpi->setSocieteDeGestion($generator->randomElement($societes_de_gestion));
+            $scpi->setCategorie($generator->randomElement($categories));
+            $scpi->setLocalisation($generator->randomElement(['Paris','ile de France','Zone Euro','Zone hors Euro']));
+            $scpi->setAssuranceVie(rand(0,1));
             $manager->persist($scpi);
         }
 
@@ -36,6 +41,7 @@ class ScpiFixtures extends Fixture implements DependentFixtureInterface
     {
         return array(
             SocieteDeGestionFixtures::class,
+            CategorieFixtures::class,
         );
     }
 }

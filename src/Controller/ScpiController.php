@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Scpi;
 use App\Form\ScpiType;
+use App\Form\SearchFormType;
 use App\Repository\ScpiRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,12 +17,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class ScpiController extends AbstractController
 {
     #[Route('/', name: 'scpi_index', methods: ['GET'])]
-    public function index(ScpiRepository $scpiRepository): Response
+    public function index(ScpiRepository $scpiRepository,Request $request): Response
     {
-        $scpis_result = $scpiRepository->findByFilter();
+        $search_data = new SearchData();
+        $form = $this->createForm(SearchFormType::class,$search_data);
+        $form->handleRequest($request);
+      
+        $scpis = $scpiRepository->findByFilter($search_data);
         return $this->render('scpi/index.html.twig', [
-            'scpis' => $scpiRepository->findAll(),
-             'scpis_result' => $scpis_result,
+            'scpis' => $scpis,
+             'form' =>$form->createView(),
         ]);
     }
 
