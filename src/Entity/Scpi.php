@@ -55,6 +55,15 @@ class Scpi
   
     private $societe_de_gestion;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $localisation;
+
+    #[ORM\Column(type: 'boolean')]
+    private $assurance_vie;
+
+    #[ORM\ManyToOne(targetEntity: Categorie::class, inversedBy: 'scpis')]
+    private $categorie;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -158,5 +167,41 @@ class Scpi
     public function __toString()
     {
         return $this->nom;
+    }
+
+    public function getLocalisation(): ?string
+    {
+        return $this->localisation;
+    }
+
+    public function setLocalisation(string $localisation): self
+    {
+        $this->localisation = $localisation;
+
+        return $this;
+    }
+
+    public function getAssuranceVie(): ?bool
+    {
+        return $this->assurance_vie;
+    }
+
+    public function setAssuranceVie(bool $assurance_vie): self
+    {
+        $this->assurance_vie = $assurance_vie;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
     }
 }

@@ -4,22 +4,25 @@ namespace App\Data;
 class SearchData{
 
     /**
-     * @var string
+     * @var societe_de_gestion[]
      */
-    public $query;
+    public $societe_de_gestion;
 
     /**
-     * @var societes_de_gestion[]
+     * @var categorie[]
      */
-    public $societes_de_gestion;
+
+    public $categorie;
 
      /**
      * @var string
      */
+
     public $localisation;
 
      /**
      * @var boolean
      */
+    
     public $assurance_vie = false;
 }

@@ -3,7 +3,14 @@
 {% block title %}Scpi index{% endblock %}
 
 {% block body %}
-<div class ="form-styles row" >
+<div class="row" style="display: flex;
+flex-direction:row;
+
+">
+
+<div class =" form-styles row" style="width:70%" >
+  
+
     <h1>Liste des Scpi</h1>
     <div class="button-right">
   <a class="btn btn-secondary" href="{{ path('scpi_new') }}">Ajouter</a>
@@ -16,7 +23,7 @@
     <h5 class="card-title">Tdvm</h5> <span class="card-text">{{ scpi.tdvm }}.</span>
     <h5 class="card-title">Prix de part</h5><span class="card-text">{{ scpi.prixPart }}.</span>
     </div>
-    <h5 class="card-title">Gérée par <span class="card-text"><a href="{{ path('societe_de_gestion_show', {'id': scpi.getSocieteDeGestion.id })}}">{{ scpi.getSocieteDeGestion }} </a></span></h5>
+    <h5 class="card-title">Gérée par <span class="card-text"><a class"link" href="{{ path('societe_de_gestion_show', {'id': scpi.getSocieteDeGestion.id })}}">{{ scpi.getSocieteDeGestion }} </a></span></h5>
    
            <a class="btn btn-secondary" href="{{ path('scpi_show', {'id': scpi.id}) }}">Détails</a>
                     <a class="btn btn-secondary" href="{{ path('scpi_edit', {'id': scpi.id}) }}">Modifier</a>
@@ -24,49 +31,13 @@
 </div>
   {% else %}
             
-                <p colspan="9">no records found</p>
+                <p colspan="9">Aucun résultat trouvé</p>
             
         {% endfor %}
-    {# <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Tdvm</th>
-                <th>Prix_part</th>
-                <th>Capitalisation</th>
-                <th>Taux_occupation</th>
-                <th>Valeur_retrait</th>
-                <th>Annee_creation</th>
-                <th>société degestion</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for scpi in scpis %}
-            <tr>
-                <td>{{ scpi.id }}</td>
-                <td>{{ scpi.nom }}</td>
-                <td>{{ scpi.tdvm }}</td>
-                <td>{{ scpi.prixPart }}</td>
-                <td>{{ scpi.capitalisation }}</td>
-                <td>{{ scpi.tauxOccupation }}</td>
-                <td>{{ scpi.valeurRetrait }}</td>
-                <td>{{ scpi.anneeCreation }}</td>
-                <td> <a href="{{ path('societe_de_gestion_show', {'id': scpi.getSocieteDeGestion.id })}}">{{ scpi.getSocieteDeGestion }} </a></td>
-                <td>
-                    <a class="btn btn-secondary" href="{{ path('scpi_show', {'id': scpi.id}) }}">show</a>
-                    <a class="btn btn-secondary" href="{{ path('scpi_edit', {'id': scpi.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table> #}
-
-  
+    
+    </div>
+     <div class="col-md-3">
+   {% include 'Scpi/_filter.html.twig' with {form:form}  %}
+    </div>
     </div>
 {% endblock %}
