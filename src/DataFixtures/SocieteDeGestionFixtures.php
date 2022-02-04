@@ -12,7 +12,7 @@ class SocieteDeGestionFixtures extends Fixture
     {
         $generator = Factory::create("fr_FR");
     
-        for ($i = 0; $i <= 10; $i++) {
+        for ($i = 0; $i <= 8; $i++) {
             $societe_de_gestion = new SocieteDeGestion();
             $societe_de_gestion->setNom($generator->company);
             $societe_de_gestion->setAdresse($generator->address);

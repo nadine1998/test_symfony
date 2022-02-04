@@ -6,6 +6,7 @@ use App\Entity\SocieteDeGestion;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class SocieteDeGestionType extends AbstractType
 {
@@ -14,7 +15,9 @@ class SocieteDeGestionType extends AbstractType
         $builder
             ->add('nom')
             ->add('adresse')
-            ->add('date_creation')
+            ->add('date_creation',DateType::class,[
+                'widget' => 'single_text',
+            ])
             ->add('effectifs')
         ;
     }

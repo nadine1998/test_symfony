@@ -6,6 +6,7 @@ use App\Data\SearchData;
 use App\Entity\Scpi;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @method Scpi|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,14 +16,15 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ScpiRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry,PaginatorInterface $paginator)
     {
         parent::__construct($registry, Scpi::class);
+        $this->paginator = $paginator;
     }
 
     /**
      * Récupére les Scpis liées au filter
-     * @return Scpi[]
+     * @return PaginationInterface
      */
     public function findByFilter(SearchData $search)
     {
@@ -45,7 +47,12 @@ class ScpiRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere('s.assurance_vie = 1');
         }
-       return $query->getQuery()->getResult();
+        $query->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            9
+        );
         
 
     }

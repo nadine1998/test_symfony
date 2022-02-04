@@ -11,8 +11,8 @@ flex-direction:row;
 <div class =" form-styles row" style="width:70%" >
   
 
+    <div class="button-right d-flex justify-content-between">
     <h1>Liste des Scpi</h1>
-    <div class="button-right">
   <a class="btn btn-secondary" href="{{ path('scpi_new') }}">Ajouter</a>
   </div>
     {% for scpi in scpis %}
@@ -34,10 +34,17 @@ flex-direction:row;
                 <p colspan="9">Aucun résultat trouvé</p>
             
         {% endfor %}
-    
+      <div class="mt-4 d-flex flex-row-reverse">
+    <div >
+    {{knp_pagination_render(scpis)}}
     </div>
+    </div>
+    </div>
+    
      <div class="col-md-3">
    {% include 'Scpi/_filter.html.twig' with {form:form}  %}
     </div>
+  
     </div>
+    
 {% endblock %}

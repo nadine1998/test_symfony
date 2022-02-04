@@ -36,13 +36,7 @@ class SearchFormType extends AbstractType{
                 'required'=>false,
                  
             ])
-            /*->add('localisation',EntityType::class,[
-                'label'=>'Sociétés de Gestion',
-                'required'=>false,
-                'class' => SocieteDeGestion::class,
-                'expanded' =>true,
-                'multiple' =>false,
-            ])*/
+          
            
         ;
     }

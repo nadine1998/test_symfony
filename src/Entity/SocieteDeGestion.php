@@ -20,20 +20,23 @@ class SocieteDeGestion
     #[Assert\Length(
         min: 2,
         max: 50,
-        minMessage: 'Your first name must be at least {{ limit }} characters long',
-        maxMessage: 'Your first name cannot be longer than {{ limit }} characters',
     )]
     #[Assert\Regex('/^[A-Za-z]([a-zA-Z0-9]|[- @\.#&!])*$/')]
+    #[Assert\NotBlank]
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $adresse;
 
     #[ORM\Column(type: 'date')]
+    #[Assert\NotBlank]
+    #[Assert\LessThan('today')]
     private $date_creation;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('numeric')]
+    #[Assert\NotBlank]
     private $effectifs;
 
     #[ORM\OneToMany(mappedBy: 'societe_de_gestion', targetEntity: Scpi::class)]

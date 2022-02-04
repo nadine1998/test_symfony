@@ -18,51 +18,57 @@ class Scpi
     #[Assert\Length(
         min: 2,
         max: 50,
-        minMessage: 'Your first name must be at least {{ limit }} characters long',
-        maxMessage: 'Your first name cannot be longer than {{ limit }} characters',
     )]
     #[Assert\Regex('/^[A-Za-z]([a-zA-Z0-9]|[- @\.#&!])*$/')]
+    #[Assert\NotBlank]
   
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $tdvm;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Positive]
     #[Assert\Type('numeric')]
+    #[Assert\NotBlank]
     private $prix_part;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Positive]
     #[Assert\Type('numeric')]
+    #[Assert\NotBlank]
     private $capitalisation;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Positive]
     #[Assert\Type('numeric')]
+    #[Assert\NotBlank]
     private $taux_occupation;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Type('numeric')]
     private $valeur_retrait;
 
-    #[ORM\Column(type: 'string', length: 255)]
   
-    private $annee_creation;
 
     #[ORM\ManyToOne(targetEntity: SocieteDeGestion::class, inversedBy: 'scpis')]
     #[ORM\JoinColumn(onDelete:'CASCADE')]
   
     private $societe_de_gestion;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $localisation;
 
     #[ORM\Column(type: 'boolean')]
     private $assurance_vie;
 
     #[ORM\ManyToOne(targetEntity: Categorie::class, inversedBy: 'scpis')]
     private $categorie;
+    
+    #[ORM\Column(type: 'date')]
+    #[Assert\NotBlank]
+    #[Assert\LessThan('today')]
+    private $date_creation;
 
     public function getId(): ?int
     {
@@ -141,17 +147,6 @@ class Scpi
         return $this;
     }
 
-    public function getAnneeCreation(): ?string
-    {
-        return $this->annee_creation;
-    }
-
-    public function setAnneeCreation(string $annee_creation): self
-    {
-        $this->annee_creation = $annee_creation;
-
-        return $this;
-    }
 
     public function getSocieteDeGestion(): ?SocieteDeGestion
     {
@@ -169,17 +164,7 @@ class Scpi
         return $this->nom;
     }
 
-    public function getLocalisation(): ?string
-    {
-        return $this->localisation;
-    }
-
-    public function setLocalisation(string $localisation): self
-    {
-        $this->localisation = $localisation;
-
-        return $this;
-    }
+   
 
     public function getAssuranceVie(): ?bool
     {
@@ -201,6 +186,18 @@ class Scpi
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->date_creation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $date_creation): self
+    {
+        $this->date_creation = $date_creation;
 
         return $this;
     }

@@ -23,13 +23,11 @@ class ScpiFixtures extends Fixture implements DependentFixtureInterface
             $scpi->setPrixPart(mt_rand(10, 100));
             $scpi->setTdvm(mt_rand(10, 100));
             $scpi->setCapitalisation(mt_rand(10, 100));
-            $scpi->setAnneeCreation(mt_rand(10, 100));
+            $scpi->setDateCreation(new \DateTime($generator->date));
             $scpi->setTauxOccupation(mt_rand(10, 100));
             $scpi->setValeurRetrait(mt_rand(10, 100));
-            $scpi->setAnneeCreation(mt_rand(1980, 2020));
             $scpi->setSocieteDeGestion($generator->randomElement($societes_de_gestion));
             $scpi->setCategorie($generator->randomElement($categories));
-            $scpi->setLocalisation($generator->randomElement(['Paris','ile de France','Zone Euro','Zone hors Euro']));
             $scpi->setAssuranceVie(rand(0,1));
             $manager->persist($scpi);
         }

@@ -39,9 +39,18 @@
                 <td>{{ scpi.valeurRetrait }}</td>
             </tr>
             <tr>
-                <th>Annee_creation</th>
+                <th>Date de création</th>
                 <td>{{ scpi.anneeCreation }}</td>
             </tr>
+            
+            {% if scpi.AssuranceVie %}
+                <th>Assurance vie</th>
+                <td>oui</td>
+            {% else %}
+                <th>Assurance vie</th>
+                <td>non</td>
+            {% endif %}
+          
         </tbody>
     </table>
 

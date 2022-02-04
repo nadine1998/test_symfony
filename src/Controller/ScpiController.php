@@ -20,6 +20,7 @@ class ScpiController extends AbstractController
     public function index(ScpiRepository $scpiRepository,Request $request): Response
     {
         $search_data = new SearchData();
+        $search_data->page = $request->get('page',1);
         $form = $this->createForm(SearchFormType::class,$search_data);
         $form->handleRequest($request);
       
