@@ -1,50 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SocieteDeGestion{% endblock %}
+{% block title %}SocieteDeGestion
+{% endblock %}
 
 {% block body %}
 
-    <h1>SocieteDeGestion</h1>
-    <div class="button-right">
-  <a class="btn btn-secondary" href="{{ path('societe_de_gestion_index') }}">Retour</a>
-  </div>
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ societe_de_gestion.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ societe_de_gestion.nom }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ societe_de_gestion.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Date_creation</th>
-                <td>{{ societe_de_gestion.dateCreation ? societe_de_gestion.dateCreation|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Effectifs</th>
-                <td>{{ societe_de_gestion.effectifs }}</td>
-            </tr>
-            <tr>
-                <th>Scpi</th>
-                <td>
-                {% for scpi in societe_de_gestion.getScpis %}
-               <a href=" {{path('scpi_show', {'id': scpi.id})}} "> {{ scpi }} </a>
-                 {% endfor %}
-                 </td>
-            </tr>
-        </tbody>
-    </table>
+	<h3 class="title">Détails de la sociéte de gestion</h3>
+	<div class="button-right">
+		<a class="btn btn-secondary" href="{{ path('societe_de_gestion_index') }}">Retour</a>
+	</div>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th class="table-show">Id</th>
+				<td>{{ societe_de_gestion.id }}</td>
+			</tr>
+			<tr>
+				<th class="table-show">Nom</th>
+				<td>{{ societe_de_gestion.nom }}</td>
+			</tr>
+			<tr>
+				<th class="table-show">Adresse</th>
+				<td>{{ societe_de_gestion.adresse }}</td>
+			</tr>
+			<tr>
+				<th class="table-show">Date_creation</th>
+				<td>{{ societe_de_gestion.dateCreation ? societe_de_gestion.dateCreation|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th class="table-show">Effectifs</th>
+				<td>{{ societe_de_gestion.effectifs }}</td>
+			</tr>
+			<tr>
+				<th class="table-show">Scpi</th>
+				<td>
+					{% for scpi in societe_de_gestion.getScpis %}
+						<a href=" {{path('scpi_show', {'id': scpi.id})}} ">
+							{{ scpi }}
+						</a>
+					{% endfor %}
+				</td>
+			</tr>
+		</tbody>
+	</table>
 
-  
-<div class="button-inline"> 
-    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_edit', {'id': societe_de_gestion.id}) }}">Modifier</a>
 
-    {{ include('societe_de_gestion/_delete_form.html.twig') }}
-    </div>
+	<div class="button-inline">
+
+		{{ include('societe_de_gestion/_delete_form.html.twig') }}
+		<a class="btn btn-dark" href="{{ path('societe_de_gestion_edit', {'id': societe_de_gestion.id}) }}">Modifier</a>
+	</div>
 {% endblock %}

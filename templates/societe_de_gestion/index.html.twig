@@ -1,65 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SocieteDeGestion index{% endblock %}
+{% block title %}SocieteDeGestion index
+{% endblock %}
 
 {% block body %}
-<div class ="form-styles row" >
-    <h1>Liste des sociétés de gestion</h1>
-    
-<div class="button-right">
-    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_new') }}">Ajouter</a>
-</div>
-    {% for societe_de_gestion in societe_de_gestions %}
-  <div class="card" style="width:30%">
-  <div class="card-body">
-    <h5 class="card-title">{{ societe_de_gestion.nom }}</h5>
-    <h5 class="card-title">Date_creation</h5><span class="card-text">{{ societe_de_gestion.dateCreation ? societe_de_gestion.dateCreation|date('Y-m-d') : '' }}.</span>
-    <div class="button-inline">
-    <h5 class="card-title">Nombre de Scpi </h5><span class="card-text">{{ societe_de_gestion.getScpis.count }}</span>
-   </div>
-          <a class="btn btn-secondary" href="{{ path('societe_de_gestion_show', {'id': societe_de_gestion.id}) }}">Détails</a>
-                    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_edit', {'id': societe_de_gestion.id}) }}">Modifier</a>
-  </div>
-</div>
-  {% else %}
-            
-                <p colspan="9">Aucun résultat trouvé</p>
-            
-        {% endfor %}
+	<div class="form-styles row">
 
-    {# <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Adresse</th>
-                <th>Date_creation</th>
-                <th>Effectifs</th>
-                <th>Nombre de Scpi</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for societe_de_gestion in societe_de_gestions %}
-            <tr>
-                <td>{{ societe_de_gestion.id }}</td>
-                <td>{{ societe_de_gestion.nom }}</td>
-                <td>{{ societe_de_gestion.adresse }}</td>
-                <td>{{ societe_de_gestion.dateCreation ? societe_de_gestion.dateCreation|date('Y-m-d') : '' }}</td>
-                <td>{{ societe_de_gestion.effectifs }}</td>
-                <td> {{ societe_de_gestion.getScpis.count }} </td>
-             <td>
-                    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_show', {'id': societe_de_gestion.id}) }}">show</a>
-                    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_edit', {'id': societe_de_gestion.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table> #}
+		<div class="button-right d-flex justify-content-between mb-4">
+			<h3 class="title font-weight-normal">Liste des sociétés de gestion</h3>
+			<a class="btn btn-primary" href="{{ path('societe_de_gestion_new') }}">Ajouter</a>
+		</div>
 
-    </div>
+		{% for societe_de_gestion in societe_de_gestions %}
+			<div class="card" style="width:30%">
+				<div class="card-body">
+					<h5 class="card-title">{{ societe_de_gestion.nom }}</h5>
+					<div class="button-inline ">
+						<h5 class="card-title second-title ">Creation:</h5>
+						<span class="card-text">{{ societe_de_gestion.dateCreation ? societe_de_gestion.dateCreation|date('Y-m-d') : '' }}.</span>
+						<h5 class="card-title second-title ">Scpi:
+						</h5>
+						<span class="card-text">{{ societe_de_gestion.getScpis.count }}</span>
+					</div>
+					<a class="btn btn-secondary" href="{{ path('societe_de_gestion_show', {'id': societe_de_gestion.id}) }}">Détails</a>
+					<a class="btn btn-secondary" href="{{ path('societe_de_gestion_edit', {'id': societe_de_gestion.id}) }}">Modifier</a>
+				</div>
+			</div>
+		{% else %}
+
+			<p colspan="9">Aucun résultat trouvé</p>
+
+		{% endfor %}
+
+		{# <table class="table table-striped table-hover">
+						        <thead>
+						            <tr>
+						                <th>Id</th>
+						                <th>Nom</th>
+						                <th>Adresse</th>
+						                <th>Date_creation</th>
+						                <th>Effectifs</th>
+						                <th>Nombre de Scpi</th>
+						                <th>actions</th>
+						            </tr>
+						        </thead>
+						        <tbody>
+						        {% for societe_de_gestion in societe_de_gestions %}
+						            <tr>
+						                <td>{{ societe_de_gestion.id }}</td>
+						                <td>{{ societe_de_gestion.nom }}</td>
+						                <td>{{ societe_de_gestion.adresse }}</td>
+						                <td>{{ societe_de_gestion.dateCreation ? societe_de_gestion.dateCreation|date('Y-m-d') : '' }}</td>
+						                <td>{{ societe_de_gestion.effectifs }}</td>
+						                <td> {{ societe_de_gestion.getScpis.count }} </td>
+						             <td>
+						                    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_show', {'id': societe_de_gestion.id}) }}">show</a>
+						                    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_edit', {'id': societe_de_gestion.id}) }}">edit</a>
+						                </td>
+						            </tr>
+						        {% else %}
+						            <tr>
+						                <td colspan="6">no records found</td>
+						            </tr>
+						        {% endfor %}
+						        </tbody>
+						    </table> #}
+
+	</div>
 {% endblock %}

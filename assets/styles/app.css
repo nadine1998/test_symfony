@@ -25,3 +25,7 @@ body {
 
     padding: 0.8rem 0.5rem;
 }
+.second-title{
+    font-weight: normal;
+    text-decoration: underline;
+}

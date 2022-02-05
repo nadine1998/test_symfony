@@ -5,9 +5,9 @@ namespace App\Form;
 use App\Entity\Scpi;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class ScpiType extends AbstractType
 {
@@ -20,15 +20,15 @@ class ScpiType extends AbstractType
             ->add('capitalisation')
             ->add('taux_occupation')
             ->add('valeur_retrait')
-            ->add('date_creation',DateType::class,[
+            ->add('date_creation', DateType::class, [
                 'widget' => 'single_text',
             ])
             ->add('societe_de_gestion')
             ->add('categorie')
-             ->add('assurance_vie',CheckboxType::class,[
-                'label'=>'Assurance vie',
-                'required'=>false,
-                 
+            ->add('assurance_vie', CheckboxType::class, [
+                'label' => 'Assurance vie',
+                'required' => false,
+
             ])
         ;
     }

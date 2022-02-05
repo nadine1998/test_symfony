@@ -10,34 +10,33 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SearchFormType extends AbstractType{
-
+class SearchFormType extends AbstractType
+{
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            
-            ->add('societe_de_gestion',EntityType::class,[
-                'label'=>'Sociétés de Gestion',
-                'required'=>false,
+
+            ->add('societe_de_gestion', EntityType::class, [
+                'label' => 'Sociétés de Gestion',
+                'required' => false,
                 'class' => SocieteDeGestion::class,
-                'expanded' =>false,
-                'multiple' =>false,
+                'expanded' => false,
+                'multiple' => false,
             ])
-            ->add('categorie',EntityType::class,[
-                'label'=>'Catégories',
-                'required'=>false,
+            ->add('categorie', EntityType::class, [
+                'label' => 'Catégories',
+                'required' => false,
                 'class' => Categorie::class,
-                'expanded' =>true,
-                'multiple' =>false,
+                'expanded' => true,
+                'multiple' => false,
             ])
-            ->add('assurance_vie',CheckboxType::class,[
-                'label'=>'Assurance vie',
-                'required'=>false,
-                 
+            ->add('assurance_vie', CheckboxType::class, [
+                'label' => 'Assurance vie',
+                'required' => false,
+
             ])
-          
-           
+
         ;
     }
 

@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit SocieteDeGestion{% endblock %}
+{% block title %}Edit SocieteDeGestion
+{% endblock %}
 
 {% block body %}
-<div class ="form-styles" >
-<div class="button-right">
-    <a class="btn btn-secondary" href="{{ path('societe_de_gestion_index') }}">Retour</a>
-    </div>
-    <h1>Modifier la  Societe de gestion</h1>
+	<div class="form-styles">
+		<div class="button-right">
+			<a class="btn btn-secondary" href="{{ path('societe_de_gestion_index') }}">Retour</a>
+		</div>
+		<h3 class="title">Modifier la  Societe de gestion</h3>
 
-    {{ include('societe_de_gestion/_form.html.twig', {'button_label': 'Modifier'}) }}
+		{{ include('societe_de_gestion/_form.html.twig', {'button_label': 'Modifier'}) }}
 
 
-
-    {{ include('societe_de_gestion/_delete_form.html.twig') }}
-    </div>
+		{{ include('societe_de_gestion/_delete_form.html.twig') }}
+	</div>
 {% endblock %}

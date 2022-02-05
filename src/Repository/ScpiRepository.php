@@ -16,23 +16,24 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class ScpiRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry,PaginatorInterface $paginator)
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Scpi::class);
         $this->paginator = $paginator;
     }
 
     /**
-     * Récupére les Scpis liées au filter
+     * Récupére les Scpis liées au filter selon les categories, sociétes de gestion et l'assurance vie
      * @return PaginationInterface
      */
     public function findByFilter(SearchData $search)
     {
         $query = $this
-        ->createQueryBuilder('s') 
-        ->select('so', 's','c')
-        ->join('s.societe_de_gestion', 'so')
-        ->join('s.categorie','c');
+            ->createQueryBuilder('s')
+            ->orderBy('s.id', 'DESC')
+            ->select('so', 's', 'c')
+            ->join('s.societe_de_gestion', 'so')
+            ->join('s.categorie', 'c');
         if (!empty($search->societe_de_gestion)) {
             $query = $query
                 ->andWhere('so.id IN (:societe_de_gestion)')
@@ -53,7 +54,6 @@ class ScpiRepository extends ServiceEntityRepository
             $search->page,
             9
         );
-        
 
     }
     // /**
@@ -62,26 +62,26 @@ class ScpiRepository extends ServiceEntityRepository
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    return $this->createQueryBuilder('s')
+    ->andWhere('s.exampleField = :val')
+    ->setParameter('val', $value)
+    ->orderBy('s.id', 'ASC')
+    ->setMaxResults(10)
+    ->getQuery()
+    ->getResult()
+    ;
     }
-    */
+     */
 
     /*
-    public function findOneBySomeField($value): ?Scpi
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+public function findOneBySomeField($value): ?Scpi
+{
+return $this->createQueryBuilder('s')
+->andWhere('s.exampleField = :val')
+->setParameter('val', $value)
+->getQuery()
+->getOneOrNullResult()
+;
+}
+ */
 }

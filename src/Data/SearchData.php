@@ -1,11 +1,12 @@
 <?php
 namespace App\Data;
 
-class SearchData{
+class SearchData
+{
     /**
      * @var int
      */
-    public $page =1;
+    public $page = 1;
     /**
      * @var societe_de_gestion[]
      */
@@ -17,15 +18,15 @@ class SearchData{
 
     public $categorie;
 
-     /**
+    /**
      * @var string
      */
 
     public $localisation;
 
-     /**
+    /**
      * @var boolean
      */
-    
+
     public $assurance_vie = false;
 }

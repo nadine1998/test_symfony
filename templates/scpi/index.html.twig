@@ -1,50 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Scpi index{% endblock %}
+{% block title %}Scpi index
+{% endblock %}
 
 {% block body %}
-<div class="row" style="display: flex;
-flex-direction:row;
+	<div class="row" style="display: flex;
+			flex-direction:row;
+			
+			">
 
-">
+		<div class=" form-styles row" style="width:70%">
 
-<div class =" form-styles row" style="width:70%" >
-  
 
-    <div class="button-right d-flex justify-content-between">
-    <h1>Liste des Scpi</h1>
-  <a class="btn btn-secondary" href="{{ path('scpi_new') }}">Ajouter</a>
-  </div>
-    {% for scpi in scpis %}
-  <div class="card" style="width:30%">
-  <div class="card-body">
-    <h5 class="card-title">{{ scpi.nom }}</h5>
-    <div class="button-inline">
-    <h5 class="card-title">Tdvm</h5> <span class="card-text">{{ scpi.tdvm }}.</span>
-    <h5 class="card-title">Prix de part</h5><span class="card-text">{{ scpi.prixPart }}.</span>
-    </div>
-    <h5 class="card-title">Gérée par <span class="card-text"><a class"link" href="{{ path('societe_de_gestion_show', {'id': scpi.getSocieteDeGestion.id })}}">{{ scpi.getSocieteDeGestion }} </a></span></h5>
-   
-           <a class="btn btn-secondary" href="{{ path('scpi_show', {'id': scpi.id}) }}">Détails</a>
-                    <a class="btn btn-secondary" href="{{ path('scpi_edit', {'id': scpi.id}) }}">Modifier</a>
-  </div>
-</div>
-  {% else %}
-            
-                <p colspan="9">Aucun résultat trouvé</p>
-            
-        {% endfor %}
-      <div class="mt-4 d-flex flex-row-reverse">
-    <div >
-    {{knp_pagination_render(scpis)}}
-    </div>
-    </div>
-    </div>
-    
-     <div class="col-md-3">
-   {% include 'Scpi/_filter.html.twig' with {form:form}  %}
-    </div>
-  
-    </div>
-    
+			<div class="button-right d-flex justify-content-between mb-4">
+				<h3 class="title font-weight-normal">Liste des Scpi</h3>
+				<a class="btn btn-primary" href="{{ path('scpi_new') }}">Ajouter</a>
+			</div>
+			{% for scpi in scpis %}
+				<div class="card" style="width:30%">
+					<div class="card-body">
+						<h5 class="card-title">{{ scpi.nom }}</h5>
+
+						<h5 class="card-title second-title">Tdvm</h5>
+						<span class="card-text">{{ scpi.tdvm }}.</span>
+						<h5 class="card-title second-title">Prix de part</h5>
+						<span class="card-text">{{ scpi.prixPart }}.</span>
+
+						<h5 class="card-title second-title">Gérée par
+							<span class="card-text">
+								<a style="	color:#676a6c;
+													text-decoration:none;" href="{{ path('societe_de_gestion_show', {'id': scpi.getSocieteDeGestion.id })}}">{{ scpi.getSocieteDeGestion }}
+								</a>
+							</span>
+						</h5>
+
+						<a class="btn btn-secondary" href="{{ path('scpi_show', {'id': scpi.id}) }}">Détails</a>
+						<a class="btn btn-secondary" href="{{ path('scpi_edit', {'id': scpi.id}) }}">Modifier</a>
+					</div>
+				</div>
+			{% else %}
+
+				<p colspan="9">Aucun résultat trouvé</p>
+
+			{% endfor %}
+			<div class="mt-4 d-flex flex-row-reverse">
+				<div>
+					{{knp_pagination_render(scpis)}}
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<h5 class="title font-weight-normal">Filtrer selon:</h5>
+			{% include 'Scpi/_filter.html.twig' with {form:form}  %}
+		</div>
+
+	</div>
+
 {% endblock %}

@@ -6,11 +6,11 @@ use App\Entity\Categorie;
 use App\Entity\Scpi;
 use App\Entity\SocieteDeGestion;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-class ScpiFixtures extends Fixture implements DependentFixtureInterface
 
+class ScpiFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -28,7 +28,7 @@ class ScpiFixtures extends Fixture implements DependentFixtureInterface
             $scpi->setValeurRetrait(mt_rand(10, 100));
             $scpi->setSocieteDeGestion($generator->randomElement($societes_de_gestion));
             $scpi->setCategorie($generator->randomElement($categories));
-            $scpi->setAssuranceVie(rand(0,1));
+            $scpi->setAssuranceVie(rand(0, 1));
             $manager->persist($scpi);
         }
 
