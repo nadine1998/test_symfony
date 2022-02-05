@@ -1,5 +1,5 @@
 # test_symfony
-# Installation 
+## Installation 
 1. Cloner ou télécharger le repository 
 2. Executer la commande composer install
 3. Executer la commande yarn add bootstrap --dev
