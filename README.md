@@ -9,4 +9,5 @@
 7. Creer les migrations avec la commande: php bin/console make:migration
 8. Remplir la base de données avec la commande: php bin/console doctrine:fixtures:load
 9. Lancer le serveur avec la commande: symfony serve
-10. Aller a https://127.0.0.1:8000/login
+10. Aller a https://127.0.0.1:8000/login et se connecter avec admin@admin.com:password
+
